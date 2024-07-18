@@ -1,7 +1,8 @@
 require "nvchad.mappings"
 -- add yours here
-
+local cmp = require "cmp"
 local map = vim.keymap.set
+
 local live_grep_args_shortcuts = require "telescope-live-grep-args.shortcuts"
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -14,4 +15,4 @@ map(
 )
 map("n", "<leader>fk", live_grep_args_shortcuts.grep_word_under_cursor)
 map("v", "<leader>fk", live_grep_args_shortcuts.grep_visual_selection)
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map("i", "<C-n>", cmp.mapping.complete())

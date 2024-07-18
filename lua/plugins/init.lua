@@ -1,3 +1,5 @@
+local cmp = require "cmp"
+
 return {
   {
     "stevearc/conform.nvim",
@@ -30,6 +32,26 @@ return {
       },
     },
   },
+
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   -- load cmp on InsertEnter
+  --   event = "InsertEnter",
+  --   -- these dependencies will only be loaded when cmp loads
+  --   -- dependencies are always lazy-loaded unless specified otherwise
+  --   dependencies = {
+  --     "hrsh7th/cmp-nvim-lsp",
+  --     "hrsh7th/cmp-buffer",
+  --   },
+  --   config = function()
+  --     print(cmp)
+  --     -- ...
+  --     -- conf.defaults.mappings.i = {
+  --     --   -- ["<C-j>"] = require("telescope.actions").move_selection_next,
+  --     --   -- ["<Esc>"] = require("telescope.actions").close,
+  --     -- }
+  --   end,
+  -- },
 
   {
     "nvim-telescope/telescope.nvim",

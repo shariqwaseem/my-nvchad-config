@@ -1,4 +1,4 @@
-local cmp = require "cmp"
+-- local cmp = require "cmp"
 
 return {
   {
@@ -53,6 +53,20 @@ return {
   --   end,
   -- },
 
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = false,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      -- 支持jsx, tsx, vue
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+    lazy = false,
+  },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {

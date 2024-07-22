@@ -4,6 +4,12 @@ local cmp = require "cmp"
 local map = vim.keymap.set
 
 local live_grep_args_shortcuts = require "telescope-live-grep-args.shortcuts"
+--
+-- Map leader o to insert a line below without leaving normal mode
+map("n", "zj", "o<Esc>", { noremap = true, silent = true })
+
+-- Map leader O to insert a line above without leaving normal mode
+map("n", "zk", "O<Esc>", { noremap = true, silent = true })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>")

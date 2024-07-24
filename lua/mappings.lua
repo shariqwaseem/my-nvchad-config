@@ -13,6 +13,7 @@ map("n", "zk", "O<Esc>", { noremap = true, silent = true })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jj", "<ESC>")
+map("n", "<leader>fr", ":lua require('telescope.builtin').resume()<CR>", {})
 map(
   "n",
   "<leader>fw",

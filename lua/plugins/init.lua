@@ -105,6 +105,7 @@ return {
         "javascript",
         "typescript",
         "css",
+        "tsx",
       },
     },
   },

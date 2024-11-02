@@ -34,6 +34,26 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
+-- In your Neovim configuration (e.g., ~/.config/nvim/lua/custom/init.lua)
+
+-- Function to run telescope live_grep with dynamic search directories
+local function search_folder(args)
+  local search_dirs = {}
+  for dir in string.gmatch(args.args, "%S+") do
+    table.insert(search_dirs, dir)
+  end
+
+  require("telescope.builtin").live_grep {
+    search_dirs = search_dirs,
+    additional_args = function()
+      return { "--fixed-strings" }
+    end,
+  }
+end
+
+-- Create a user command 'SearchFolder' that takes arguments
+vim.api.nvim_create_user_command("SearchFolder", search_folder, { nargs = 1 })
+
 vim.schedule(function()
   require "mappings"
 end)

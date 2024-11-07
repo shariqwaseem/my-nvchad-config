@@ -83,6 +83,16 @@ return {
         -- ["<C-j>"] = require("telescope.actions").move_selection_next,
         -- ["<Esc>"] = require("telescope.actions").close,
       }
+      conf.defaults.vimgrep_arguments = {
+        "rg",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case", -- Enables smart case search
+        -- "--ignore-case", -- Enables case insensitive search
+        "--fixed-strings", -- Disables regex; treats the search term literally
+      }
       -- or
       -- conf.vimgrep_arguments = { "--fixed-strings" }
 

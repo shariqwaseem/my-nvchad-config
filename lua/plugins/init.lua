@@ -83,6 +83,7 @@ return {
         -- ["<C-j>"] = require("telescope.actions").move_selection_next,
         -- ["<Esc>"] = require("telescope.actions").close,
       }
+
       conf.defaults.vimgrep_arguments = {
         "rg",
         "--no-heading",
@@ -95,7 +96,6 @@ return {
       }
       -- or
       -- conf.vimgrep_arguments = { "--fixed-strings" }
-
       return conf
     end,
   },

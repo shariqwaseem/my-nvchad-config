@@ -13,6 +13,21 @@ map("n", "zk", "O<Esc>", { noremap = true, silent = true })
 
 -- this line causes ; to initiate command mode. but i dont want that since ; is used to repeat old commands :-)
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
+--
+
+map(
+  "n",
+  "<leader>fe",
+  '<cmd>lua require("telescope.builtin").find_files({ find_command = { "rg", "--files", "--glob", "*.env" }, hidden = true, no_ignore = true })<CR>',
+  { noremap = true, silent = true }
+)
+
+map(
+  "n",
+  "<leader>fx",
+  '<cmd>lua require("telescope.builtin").live_grep({ search_dirs = {"."}, additional_args = function(opts) return {"--glob", "**/.env", "--hidden", "--no-ignore"} end })<CR>',
+  { noremap = true, silent = true }
+)
 map("i", "jj", "<ESC>")
 map("n", "<leader>fr", ":lua require('telescope.builtin').resume()<CR>", {})
 map("n", "<leader>fk", live_grep_args_shortcuts.grep_word_under_cursor)

@@ -6,13 +6,13 @@
 local options = {
 
   base46 = {
-    theme = "github_dark", -- default theme
+    theme = "penumbra_dark", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "github_dark", "one_light" },
+    theme_toggle = { "penumbra_dark", "one_light" },
   },
 
   ui = {

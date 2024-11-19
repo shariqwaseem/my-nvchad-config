@@ -8,7 +8,41 @@ return {
       require "configs.conform"
     end,
   },
-
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup {
+        signs = {
+          add = { text = "┃" },
+          change = { text = "┃" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+          untracked = { text = "┆" },
+        },
+        signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+        numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        watch_gitdir = {
+          follow_files = true,
+        },
+        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = "eol",
+          delay = 1000,
+        },
+        preview_config = {
+          border = "single",
+          style = "minimal",
+          relative = "cursor",
+          row = 0,
+          col = 1,
+        },
+      }
+    end,
+  },
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -72,6 +106,7 @@ return {
     dependencies = {
       {
         "nvim-telescope/telescope-live-grep-args.nvim",
+        "nvim-lua/plenary.nvim",
         -- This will not install any breaking changes.
         -- For major updates, this must be adjusted manually.
         version = "^1.0.0",

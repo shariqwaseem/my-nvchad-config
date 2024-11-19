@@ -40,3 +40,32 @@ map("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
 map("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 map("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 map("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+
+map("n", "<C-j>", "<C-i>", { noremap = true, silent = true })
+
+-- Gitsigns Keybindings
+local gitsigns = require "gitsigns"
+
+map("n", "]c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "]c", bang = true }
+  else
+    gitsigns.next_hunk()
+  end
+end, { noremap = true, silent = true, desc = "Next Git Hunk" })
+
+map("n", "[c", function()
+  if vim.wo.diff then
+    vim.cmd.normal { "[c", bang = true }
+  else
+    gitsigns.prev_hunk()
+  end
+end, { noremap = true, silent = true, desc = "Previous Git Hunk" })
+
+map("n", "<leader>gb", function()
+  gitsigns.blame_line { full = false }
+end, { noremap = true, silent = true, desc = "Blame Line" })
+map("n", "<leader>gd", gitsigns.diffthis, { noremap = true, silent = true, desc = "Diff This" })
+map("n", "<leader>gD", function()
+  gitsigns.diffthis "~"
+end, { noremap = true, silent = true, desc = "Diff Against Previous Commit" })

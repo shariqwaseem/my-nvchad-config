@@ -139,6 +139,7 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {}, -- your configuration
   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

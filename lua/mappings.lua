@@ -41,7 +41,7 @@ map("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 map("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 map("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 
-map("n", "<C-j>", "<C-i>", { noremap = true, silent = true })
+map("n", "<C-t>", "<C-i>", { noremap = true, silent = true })
 
 -- Gitsigns Keybindings
 local gitsigns = require "gitsigns"

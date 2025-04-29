@@ -5,11 +5,11 @@ local map = vim.keymap.set
 
 local live_grep_args_shortcuts = require "telescope-live-grep-args.shortcuts"
 --
--- Map leader o to insert a line below without leaving normal mode
-map("n", "zj", "o<Esc>", { noremap = true, silent = true })
+-- Insert a blank line below and move cursor to it
+map("n", "zj", ":call append(line('.'), '')<CR>j", { noremap = true, silent = true })
 
--- Map leader O to insert a line above without leaving normal mode
-map("n", "zk", "O<Esc>", { noremap = true, silent = true })
+-- Insert a blank line above and move cursor to it
+map("n", "zk", ":call append(line('.') - 1, '')<CR>k", { noremap = true, silent = true })
 
 -- this line causes ; to initiate command mode. but i dont want that since ; is used to repeat old commands :-)
 -- map("n", ";", ":", { desc = "CMD enter command mode" })

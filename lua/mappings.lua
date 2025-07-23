@@ -8,6 +8,8 @@ local live_grep_args_shortcuts = require "telescope-live-grep-args.shortcuts"
 -- Insert a blank line below and move cursor to it
 map("n", "zj", ":call append(line('.'), '')<CR>j", { noremap = true, silent = true })
 
+map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+
 -- Insert a blank line above and move cursor to it
 map("n", "zk", ":call append(line('.') - 1, '')<CR>k", { noremap = true, silent = true })
 

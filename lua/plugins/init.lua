@@ -1,12 +1,58 @@
 -- local cmp = require "cmp"
 
 return {
+  -- Add nvim-tree configuration to show hidden files
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function()
+      local conf = require "nvchad.configs.nvimtree"
+      
+      -- Override the filters to show hidden files
+      conf.filters.dotfiles = false -- Show dotfiles (hidden files)
+      conf.filters.git_ignored = false -- Also show git ignored files if desired
+      
+      return conf
+    end,
+  },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or "zbirenbaum/copilot.lua"
+      { "nvim-lua/plenary.nvim" },
+    },
+    -- load at startup rather than lazily
+    build = "make tiktoken",
+
+    lazy = false,
+    opts = {
+      model = "gpt-4.1",
+    },
+    config = function(_, opts)
+      -- 1. Turn off Copilot's default Tab mapping
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      -- 2. Remap <C-l> in insert mode to accept the suggestion
+      vim.api.nvim_set_keymap("i", "<C-a>", [[copilot#Accept("\<CR>")]], { expr = true, silent = true, noremap = true })
+
+      -- 3. Finally, initialise CopilotChat with your opts
+      require("CopilotChat").setup(opts)
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("diffview").setup()
+    end,
+
+    lazy = false,
   },
   {
     "lewis6991/gitsigns.nvim",

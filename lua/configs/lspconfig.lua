@@ -72,3 +72,22 @@ lspconfig.tailwindcss.setup {
     )(fname)
   end,
 }
+
+-- go
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      gofumpt = true,
+      staticcheck = true,
+      analyses = {
+        unusedparams = true,
+        nilness = true,
+        unusedwrite = true,
+        shadow = true,
+      },
+    },
+  },
+}

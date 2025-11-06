@@ -110,6 +110,10 @@ return {
         "typescript-language-server",
         "eslint-lsp",
         "tailwindcss-language-server", -- Add Tailwind CSS language server
+        -- Go tooling
+        "gopls",
+        "gofumpt",
+        "goimports",
       },
     },
   },
@@ -215,6 +219,9 @@ return {
         "typescript",
         "css",
         "tsx",
+        -- Go
+        "go",
+        "gomod",
       },
     },
   },

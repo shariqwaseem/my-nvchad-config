@@ -8,6 +8,7 @@ local options = {
     typescriptreact = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
+    go = { "gofumpt", "goimports" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()

@@ -34,6 +34,11 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
+-- Enable transparent background so terminal transparency shows through
+pcall(function()
+  require("transparent").enable()
+end)
+
 -- In your Neovim configuration (e.g., ~/.config/nvim/lua/custom/init.lua)
 
 -- Function to run telescope live_grep with dynamic search directories

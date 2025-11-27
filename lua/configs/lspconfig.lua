@@ -3,30 +3,35 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "ts_ls", "eslint" }
+-- Completely disable LSP-driven inline color previews
+if capabilities.textDocument then
+  capabilities.textDocument.colorProvider = nil
+end
+vim.lsp.handlers["textDocument/documentColor"] = function() end
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+local util = require "lspconfig.util"
+
+local function with_defaults(opts)
+  return vim.tbl_deep_extend("force", {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
-  }
+  }, opts or {})
 end
 
--- typescript
-lspconfig.ts_ls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
+local function setup(server, opts)
+  vim.lsp.config(server, with_defaults(opts))
+  vim.lsp.enable(server)
+end
+
+local servers = { "html", "cssls", "ts_ls", "eslint" }
+
+for _, server in ipairs(servers) do
+  setup(server)
+end
 
 -- tailwindcss with DaisyUI support
-lspconfig.tailwindcss.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+setup("tailwindcss", {
   filetypes = {
     "html",
     "css",
@@ -58,26 +63,21 @@ lspconfig.tailwindcss.setup {
       },
     },
   },
-  root_dir = function(fname)
-    return lspconfig.util.root_pattern(
-      "tailwind.config.js",
-      "tailwind.config.ts",
-      "tailwind.config.cjs",
-      "tailwind.config.mjs",
-      "postcss.config.js",
-      "postcss.config.ts",
-      "postcss.config.cjs",
-      "postcss.config.mjs",
-      "package.json"
-    )(fname)
-  end,
-}
+  root_dir = util.root_pattern(
+    "tailwind.config.js",
+    "tailwind.config.ts",
+    "tailwind.config.cjs",
+    "tailwind.config.mjs",
+    "postcss.config.js",
+    "postcss.config.ts",
+    "postcss.config.cjs",
+    "postcss.config.mjs",
+    "package.json"
+  ),
+})
 
 -- go
-lspconfig.gopls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+setup("gopls", {
   settings = {
     gopls = {
       gofumpt = true,
@@ -90,4 +90,4 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})

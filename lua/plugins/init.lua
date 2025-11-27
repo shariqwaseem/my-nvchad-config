@@ -22,30 +22,6 @@ return {
     end,
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" }, -- or "zbirenbaum/copilot.lua"
-      { "nvim-lua/plenary.nvim" },
-    },
-    -- load at startup rather than lazily
-    build = "make tiktoken",
-
-    lazy = false,
-    opts = {
-      model = "gpt-4.1",
-    },
-    config = function(_, opts)
-      -- 1. Turn off Copilot's default Tab mapping
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      -- 2. Remap <C-l> in insert mode to accept the suggestion
-      vim.api.nvim_set_keymap("i", "<C-a>", [[copilot#Accept("\<CR>")]], { expr = true, silent = true, noremap = true })
-
-      -- 3. Finally, initialise CopilotChat with your opts
-      require("CopilotChat").setup(opts)
-    end,
-  },
-  {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
